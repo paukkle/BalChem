@@ -30,3 +30,21 @@ def validation_matrix():
         [0, 0, 1, 0, 2, 0],
         [0, 1, 1, 0, 0, 1]])
     return mat
+
+
+@pytest.fixture
+def correct_balance_vector():
+    return np.array([[-6., -1., -6., 3., 3., 7.]]).astype(float)
+
+
+@pytest.fixture
+def inverted_matrix():
+    M = np.array([[1, 1, 0, 0, 0, 1],
+        [1, 0, 0, 2, 0, 0],
+        [0, 3, 0, 0, 1, 0],
+        [0, 0, 1, 0, 2, 0],
+        [0, 1, 1, 0, 0, 1],
+        [0, 0, 0, 0, 0, 1]])
+
+    M_inv = np.linalg.inv(M)
+    return M_inv
