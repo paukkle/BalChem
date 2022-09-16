@@ -13,10 +13,9 @@ def _get_null_space_vectors(matrix: np.array, nullity: int) -> np.array:
 
 def _balance_vectors(vectors: np.array):
     def find_nearest(array, number):
-        new_array = np.squeeze(array)
-        diff_array = np.absolute(new_array - number)
+        diff_array = np.absolute(array - number)
         idx = diff_array.argmin()
-        return abs(new_array[idx])
+        return abs(array[idx])
 
     for i in range(len(vectors)):
         vector = vectors[i, :]
