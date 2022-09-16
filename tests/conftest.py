@@ -48,3 +48,22 @@ def inverted_matrix():
 
     M_inv = np.linalg.inv(M)
     return M_inv
+
+@pytest.fixture
+def augmented_matrix():
+    M = np.array([
+        [2,0,1,3,4,5],
+        [2,0,1,3,4,5][::-1],
+        [9,0,1,3,4,5],
+        [0, 0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 0, 1]
+        ])
+    return M
+
+
+@pytest.fixture
+def augmented_matrix_nullity_1(validation_matrix):
+    M = np.array([[0, 0, 0, 0, 0, 1]])
+    M = np.concatenate(( validation_matrix, M ), axis=0)
+    return M
