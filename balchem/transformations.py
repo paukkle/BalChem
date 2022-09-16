@@ -1,4 +1,3 @@
-from sqlite3 import DataError
 import numpy as np
 
 
