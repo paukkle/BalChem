@@ -2,16 +2,16 @@ import numpy as np
 
 
 def get_balance_vectors(inverted_matrix: np.array, nullity_number: int):
-    null_space_vectors = get_null_space_vectors(inverted_matrix, nullity_number)
-    balance_arrays = balance_vectors(null_space_vectors)
+    null_space_vectors = _get_null_space_vectors(inverted_matrix, nullity_number)
+    balance_arrays = _balance_vectors(null_space_vectors)
     return balance_arrays
 
 
-def get_null_space_vectors(matrix: np.array, nullity: int) -> np.array:
+def _get_null_space_vectors(matrix: np.array, nullity: int) -> np.array:
     return np.transpose(matrix[:, -nullity:])
 
 
-def balance_vectors(vectors: np.array):
+def _balance_vectors(vectors: np.array):
     def find_nearest(array, number):
         new_array = np.squeeze(array)
         diff_array = np.absolute(new_array - number)
