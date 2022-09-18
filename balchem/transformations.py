@@ -18,7 +18,7 @@ def get_augmented_matrix(matrix):
     nullity = _get_matrix_nullity(matrix)
     null_vectors = _get_null_vectors(matrix.shape[1], nullity)
     augmented_matrix = _augment_matrix(matrix, null_vectors)
-    return augmented_matrix
+    return augmented_matrix, nullity
 
 
 def _augment_matrix(matrix: np.array, null_vectors: np.array):
