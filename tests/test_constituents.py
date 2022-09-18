@@ -12,11 +12,11 @@ def test_get_molecules(chemical_equation: dict):
 
 def test_get_atoms(chemical_equation: dict):
     molecules = chemical_equation["input_equation"]
-    result = get_atom_counts(molecules)
+    result, _ = get_atom_counts(molecules)
     assert result == chemical_equation["atoms_amounts"]
 
 
 def test_get_atoms_methane(chemical_equation_methane: dict):
     molecules = chemical_equation_methane["input_equation"]
-    result = get_atom_counts(molecules)
+    result, _ = get_atom_counts(molecules)
     assert result == chemical_equation_methane["atoms_amounts"]
