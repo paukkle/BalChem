@@ -74,3 +74,10 @@ def augmented_matrix_nullity_2(validation_matrix):
     M = np.array([[0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 1]])
     M = np.concatenate(( validation_matrix[:4, :], M ), axis=0)
     return M
+
+
+@pytest.fixture
+def chemical_equation():
+    equation = "KI + KClO3 + HCl = I2 + H2O + KCl"
+    correct_output = "6 KI + KClO3 + 6 HCl = 3 I2 + 3 H2O + 7 KCl"
+    return {"input_equation": equation, "output_equation": correct_output}
