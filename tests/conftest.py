@@ -67,3 +67,10 @@ def augmented_matrix_nullity_1(validation_matrix):
     M = np.array([[0, 0, 0, 0, 0, 1]])
     M = np.concatenate(( validation_matrix, M ), axis=0)
     return M
+
+
+@pytest.fixture
+def augmented_matrix_nullity_2(validation_matrix):
+    M = np.array([[0, 0, 0, 0, 1, 0], [0, 0, 0, 0, 0, 1]])
+    M = np.concatenate(( validation_matrix[:4, :], M ), axis=0)
+    return M
