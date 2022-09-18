@@ -1,14 +1,23 @@
 import numpy as np
 
+from .constituents import get_atom_counts
+from .transformations import create_matrix, get_augmented_matrix
+
 
 def balance_equation(equation: str):
     constants = (-6, -1, -6, 3, 3, 7)
     molecules = ("KI", "KClO3", "HCl", "I2", "H2O", "KCl")
-    result = _create_balanced_equation(constants, molecules)
-    return  result
+    atom_counts, molecules = get_atom_counts(equation)
+    M = create_matrix(atom_counts)
+    M_augm, nullity = get_augmented_matrix(M)
+    M_inv = np.linalg.inv(M_augm)
+    balance_vectors = get_balance_vectors(M_inv, nullity)
+    result = _create_balanced_equation(list(balance_vectors[0]), molecules)
+    return result
 
 
-def _create_balanced_equation(constants: tuple, molecules: tuple):
+def _create_balanced_equation(constants: list, molecules: list):
+    constants = [int(value) for value in constants]
     sides = _arrange_sides(constants, molecules)
     full_equation = _join_sides(sides)
     return full_equation
