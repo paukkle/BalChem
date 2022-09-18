@@ -1,3 +1,4 @@
+from asyncio import constants
 import numpy as np
 import pytest
 
@@ -78,6 +79,25 @@ def augmented_matrix_nullity_2(validation_matrix):
 
 @pytest.fixture
 def chemical_equation():
+    constituents = ["KI", "KClO3", "HCl", "I2", "H2O", "KCl"]
     equation = "KI + KClO3 + HCl = I2 + H2O + KCl"
     correct_output = "6 KI + KClO3 + 6 HCl = 3 I2 + 3 H2O + 7 KCl"
-    return {"input_equation": equation, "output_equation": correct_output}
+    atoms_amounts = {"K": [1, 1, 0, 0, 0, 1],
+        "I": [1, 0, 0, 2, 0, 0],
+        "O": [0, 3, 0, 0, 1, 0],
+        "H": [0, 0, 1, 0, 2, 0],
+        "Cl": [0, 1, 1, 0, 0, 1]}
+    return {"input_equation": equation, "output_equation": correct_output,
+    "constituents": constituents, "atoms_amounts": atoms_amounts}
+
+
+@pytest.fixture
+def chemical_equation_methane():
+    constituents = ["CH4", "O2", "CO2", "H2O"]
+    equation = "CH4 + O2 = CO2 + H2O"
+    correct_output = "CH4 + 2 O2 = CO2 + 2 H2O"
+    atoms_amounts = {"O": [0, 2, 2, 1],
+        "C": [1, 0, 1, 0],
+        "H": [4, 0, 0, 2]}
+    return {"input_equation": equation, "output_equation": correct_output,
+    "constituents": constituents, "atoms_amounts": atoms_amounts}
