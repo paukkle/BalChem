@@ -1,7 +1,8 @@
 import numpy as np
+import sys
 
-from .constituents import get_atom_counts
-from .transformations import create_matrix, get_augmented_matrix
+from constituents import get_atom_counts
+from transformations import create_matrix, get_augmented_matrix
 
 
 def balance_equation(equation: str):
@@ -17,7 +18,13 @@ def balance_equation(equation: str):
 
 
 def _create_balanced_equation(constants: list, molecules: list):
-    constants = [int(value) for value in constants]
+    for i in range(len(constants)):
+        value = constants[i]
+        if int(value) == value:
+            value = int(value)
+        else:
+            value = round(value, 1)
+        constants[i] = value
     sides = _arrange_sides(constants, molecules)
     full_equation = _join_sides(sides)
     return full_equation
@@ -58,3 +65,6 @@ def _balance_vectors(vectors: np.array):
         vectors[i, :] = (vector / find_nearest(vector, 0))
 
     return vectors
+
+args = sys.argv[1:]
+print(balance_equation(args[0]))
