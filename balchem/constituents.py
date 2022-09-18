@@ -11,7 +11,7 @@ def get_atom_counts(unbalanced_equation):
         idx = molecules.index(molecule)
         for atom, count in atoms.items():
             atoms_in_rows[atom][idx] = count
-    return atoms_in_rows
+    return atoms_in_rows, molecules
 
 
 def get_molecules(unbalanced_equation: str):
