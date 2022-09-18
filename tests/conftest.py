@@ -101,3 +101,29 @@ def chemical_equation_methane():
         "H": [4, 0, 0, 2]}
     return {"input_equation": equation, "output_equation": correct_output,
     "constituents": constituents, "atoms_amounts": atoms_amounts}
+
+
+@pytest.fixture
+def chemical_equation_primary_alcohol():
+    constituents = ["CH3CH2OH", "O2", "CH3CHO", "H2O"]
+    equation = "CH3CH2OH + O2 = CH3CHO + H2O"
+    correct_output = "2 CH3CH2OH + O2 = 2 CH3CHO + 2 H2O"
+    atoms_amounts = {"O": [1, 2, 1, 1],
+        "C": [2, 0, 2, 0],
+        "H": [6, 0, 4, 2]}
+    return {"input_equation": equation, "output_equation": correct_output,
+    "constituents": constituents, "atoms_amounts": atoms_amounts}
+
+
+@pytest.fixture
+def chemical_equation_iron_oxide():
+    constituents = ["Fe2O3", "C", "Fe", "CO2"]
+    equation = "Fe2O3 + C = Fe + CO2"
+    correct_output = "2 Fe2O3 + 3 C = 4 Fe + 3 CO2"
+    atoms_amounts = {"O": [3, 0, 0, 2],
+        "Fe": [2, 0, 1, 0],
+        "C": [0, 1, 0, 1]}
+    return {"input_equation": equation, "output_equation": correct_output,
+    "constituents": constituents, "atoms_amounts": atoms_amounts}
+
+"Fe2O3 + C = Fe + CO2"
